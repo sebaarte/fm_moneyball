@@ -5,6 +5,6 @@ html_path = r'input_files/Money_test.html'
 
 
 if __name__ == "__main__":
-    df = parse_html(html_path)
+    df = parse_html(html_path).infer_objects()
     
-    print(fix_wage(df)['Wage'])
+    print(fix_numerics(df))

@@ -33,20 +33,36 @@ def parse_positions(position_string) -> list[str]:
 
 
 def fix_wage(df) -> DataFrame:
-    f = lambda x :  re.sub('\D','',str(x))
+    f = lambda x :  re.sub(r'\D','',str(x))
 
     df['Wage'] = pd.to_numeric(df['Wage'].apply(f),errors='coerce')
 
     return df
 
-def fix_value(df) -> DataFrame:
+def fix_value(df) -> TransferRange:
     def f(x):
-        l = x.split('-')
+        bounds = []
+        l = str(x).split('-')
+        if len(l) == 0:
+            return TransferRange(-1,-1)
+        if l == ["Not for Sale"]:
+            return TransferRange(float('inf'),float('inf'))
+        if l == ["Unknown"]:
+            return TransferRange(-1,-1)
         for i in l:
             if 'K' in i:
-                return int(re.sub('\D','',str(i)))*1000
-        return int(re.sub('\D','',str(l[0])))
+                bounds.append(int(re.sub(r'\D','',str(i)))*1_000)
+            elif 'M' in i:
+                bounds.append(int(re.sub(r'\D','',str(i)))*1_000_000)
+            
+            else:
+                bounds.append(int(re.sub(r'\D','',str(i))))
+        return TransferRange(bounds[0], bounds[1]) if len(bounds) > 1 else TransferRange(bounds[0], bounds[0])
+        
 
-    df['Value'] = df['Value'].apply(f)
+    df['Transfer Value'] = df['Transfer Value'].apply(f)
 
     return df
+
+def fix_numerics(df) -> DataFrame:
+    return df.apply(pd.to_numeric, errors='ignore')
