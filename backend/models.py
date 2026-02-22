@@ -25,11 +25,8 @@ class TransferRange:
         return f"€{num}{suffix}"
 
     def __repr__(self):
-        
         if self.lower_bound == float('inf') and self.upper_bound == float('inf'):
             return "Not for Sale"
         elif self.lower_bound == -1 and self.upper_bound == -1:
             return "Unknown"
-        print(self.format_monetary_value(self.lower_bound))
-        print(self.upper_bound)
         return self.format_monetary_value(self.lower_bound) if self.lower_bound == self.upper_bound else f"{self.format_monetary_value(self.lower_bound)} - {self.format_monetary_value(self.upper_bound)}"

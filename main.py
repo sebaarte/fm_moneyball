@@ -1,10 +1,10 @@
-from backend.parser import *
-from backend.transform import *
+import sys
+import os
 
-html_path = r'input_files/Money_test.html'
+# Add frontend to path for imports
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'frontend'))
 
+from frontend.gui import main
 
 if __name__ == "__main__":
-    df = parse_html(html_path).infer_objects()
-    
-    print(fix_numerics(df))
+    main()
