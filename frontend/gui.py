@@ -8,9 +8,9 @@ from PyQt5.QtCore import Qt
 import pandas as pd
 from backend.parser import parse_html
 from backend.transform import fix_positions, fix_wage, fix_value, fix_numerics
-from data_manager import DataManager
+from backend.data_manager import DataManager
 from filter_widget import FilterWidget
-from chart_types import (TableViewWidget, ScatterPlotWidget, BarChartWidget, 
+from frontend.chart_types import (TableViewWidget, ScatterPlotWidget, BarChartWidget, 
                         LineChartWidget, HistogramWidget)
 from visualization_manager import VisualizationManager
 
@@ -290,7 +290,7 @@ class MainWindow(QMainWindow):
             df = fix_positions(df)
             df = fix_wage(df)
             df = fix_value(df)
-            df = fix_numerics(df)
+
             
             # Auto-save as CSV
             csv_path = os.path.splitext(file_path)[0] + ".csv"

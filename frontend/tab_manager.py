@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QInputDialog
 from PyQt5.QtCore import pyqtSignal
-from data_manager import DataManager
+from backend.data_manager import DataManager
 
 class VisualizationTab(QWidget):
     """A single visualization tab that contains draggable plots and filters"""

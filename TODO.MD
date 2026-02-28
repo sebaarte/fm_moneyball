@@ -4,4 +4,5 @@
 - Rajouter des plots
 - En ouvrant l'app, le tab doit être vide
 - Hover au-dessus d'un point dans le scatter plot -> montre le nom du joueur et les stats relevant
-- 
+- Comparaison entre deux/plusieurs joueurs
+- Handle les caractères spéciaux

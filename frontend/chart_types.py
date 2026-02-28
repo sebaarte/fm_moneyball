@@ -4,7 +4,7 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 import pandas as pd
 from visualization_base import ChartWidget
-from data_manager import DataManager
+from backend.data_manager import DataManager
 
 class TableViewWidget(ChartWidget):
     """Table view chart widget"""
@@ -26,23 +26,32 @@ class TableViewWidget(ChartWidget):
     def update_chart(self):
         """Update the table view"""
         data = self.get_data()
-        
+
+        #clear existing data
+        self.table.setRowCount(0)
+        self.table.setColumnCount(0)
+
+        # Check if data is empty
         if data.empty:
-            self.table.setRowCount(0)
-            self.table.setColumnCount(0)
             return
-        
+
+
         # Set up table
         self.table.setColumnCount(len(data.columns))
         self.table.setRowCount(len(data))
         self.table.setHorizontalHeaderLabels(data.columns)
         
         # Populate table
-        for row_idx, row in data.iterrows():
-            for col_idx, value in enumerate(row):
+        for row_idx in range(len(data)):
+            for col_idx in range(len(data.columns)):
+                value = data.iloc[row_idx, col_idx]  # Use iloc with integer position
                 item = QTableWidgetItem(str(value))
                 item.setFlags(item.flags() & ~Qt.ItemIsEditable)
                 self.table.setItem(row_idx, col_idx, item)
+        
+        self.table.setUpdatesEnabled(True)
+        self.table.setSortingEnabled(True)
+
         
         self.table.resizeColumnsToContents()
 

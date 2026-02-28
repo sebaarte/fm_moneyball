@@ -2,7 +2,7 @@ from PyQt5.QtWidgets import (QWidget, QVBoxLayout, QHBoxLayout, QPushButton,
                                      QComboBox, QLineEdit, QLabel, QSpinBox, 
                                      QDoubleSpinBox, QScrollArea, QFrame)
 from PyQt5.QtCore import pyqtSignal
-from data_manager import DataManager
+from backend.data_manager import DataManager
 
 class FilterWidget(QFrame):
     """Individual filter widget in the filter panel"""

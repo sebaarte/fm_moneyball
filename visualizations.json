@@ -1,0 +1,41 @@
+{
+  "version": "1.0",
+  "data_source": "D:/Scratches/fm_moneyball/fm_moneyball/input_files/Money_test.csv",
+  "active_tab": "test",
+  "tabs": [
+    {
+      "name": "Tab 1",
+      "charts": [],
+      "filters": []
+    },
+    {
+      "name": "test",
+      "charts": [
+        {
+          "type": "Table",
+          "x_column": "UID",
+          "y_column": null,
+          "position": {
+            "x": 50,
+            "y": 50,
+            "width": 600,
+            "height": 400
+          }
+        }
+      ],
+      "filters": [
+        {
+          "column": "Age",
+          "operator": ">",
+          "position": {
+            "x": 700,
+            "y": 50,
+            "width": 300,
+            "height": 250
+          },
+          "filter_index": 0
+        }
+      ]
+    }
+  ]
+}

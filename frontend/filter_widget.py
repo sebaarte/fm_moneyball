@@ -2,8 +2,10 @@ from PyQt5.QtWidgets import (QVBoxLayout, QHBoxLayout, QComboBox, QLabel,
                                      QPushButton, QLineEdit, QListWidget, QCheckBox,
                                      QDoubleSpinBox, QWidget)
 from PyQt5.QtCore import pyqtSignal, Qt
-from data_manager import DataManager
+from backend.data_manager import DataManager
+from backend.utils import parse_numeric
 from draggable_widget import DraggableWidget
+
 
 
 class FilterWidget(DraggableWidget):
@@ -125,7 +127,7 @@ class FilterWidget(DraggableWidget):
         elif isinstance(self.value_widget, QDoubleSpinBox):
             return self.value_widget.value()
         elif isinstance(self.value_widget, QLineEdit):
-            return self.value_widget.text()
+            return parse_numeric(self.value_widget.text()) 
         return ""
     
     def _on_apply(self):
@@ -133,6 +135,7 @@ class FilterWidget(DraggableWidget):
         column = self.column_combo.currentText()
         operator = self.operator_combo.currentText()
         values = self._get_selected_values()
+
         
         if not column or not values:
             return

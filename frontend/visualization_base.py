@@ -2,7 +2,7 @@ from PyQt5.QtWidgets import QHBoxLayout, QComboBox, QLabel
 from PyQt5.QtCore import pyqtSignal
 import pandas as pd
 from abc import abstractmethod
-from data_manager import DataManager
+from backend.data_manager import DataManager
 from draggable_widget import DraggableWidget
 
 

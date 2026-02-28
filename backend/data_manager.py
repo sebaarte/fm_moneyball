@@ -7,25 +7,62 @@ class Filter:
         self.column = column
         self.operator = operator
         self.value = value
+
+    def _cast_value_to_column_type(self, df: pd.DataFrame) -> Any:
+        """Cast self.value to match the column's dtype"""
     
+        if self.column not in df.columns:
+            return self.value
+        
+        col_dtype = df[self.column].dtype
+        
+        try:
+            # Integer types
+            if pd.api.types.is_integer_dtype(col_dtype):
+                return int(float(self.value))
+            
+            # Float types
+            elif pd.api.types.is_float_dtype(col_dtype):
+                return float(self.value)
+            
+            # Boolean types
+            elif pd.api.types.is_bool_dtype(col_dtype):
+                if isinstance(self.value, str):
+                    return self.value.lower() in ('true', '1', 'yes', 'on')
+                return bool(self.value)
+            
+            # Datetime types
+            elif pd.api.types.is_datetime64_any_dtype(col_dtype):
+                return pd.to_datetime(self.value)
+            
+            # String/Object types
+            else:
+                return str(self.value)
+                
+        except (ValueError, TypeError) as e:
+            print(f"Warning: Could not cast '{self.value}' to {col_dtype}: {e}")
+            return self.value
+        
     def apply(self, df: pd.DataFrame) -> pd.DataFrame:
         """Apply this filter to a DataFrame"""
+        filter_value = self._cast_value_to_column_type(df)
+        
         if self.operator == "==":
-            return df[df[self.column] == self.value]
+            return df[df[self.column] == filter_value]
         elif self.operator == "!=":
-            return df[df[self.column] != self.value]
+            return df[df[self.column] != filter_value]
         elif self.operator == ">":
-            return df[df[self.column] > self.value]
+            return df[df[self.column] > filter_value]
         elif self.operator == "<":
-            return df[df[self.column] < self.value]
+            return df[df[self.column] < filter_value]
         elif self.operator == ">=":
-            return df[df[self.column] >= self.value]
+            return df[df[self.column] >= filter_value]
         elif self.operator == "<=":
-            return df[df[self.column] <= self.value]
+            return df[df[self.column] <= filter_value]
         elif self.operator == "contains":
-            return df[df[self.column].astype(str).str.contains(str(self.value), case=False, na=False)]
+            return df[df[self.column].astype(str).str.contains(str(filter_value), case=False, na=False)]
         elif self.operator == "not contains":
-            return df[~df[self.column].astype(str).str.contains(str(self.value), case=False, na=False)]
+            return df[~df[self.column].astype(str).str.contains(str(filter_value), case=False, na=False)]
         else:
             return df
     
