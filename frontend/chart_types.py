@@ -9,8 +9,8 @@ from data_manager import DataManager
 class TableViewWidget(ChartWidget):
     """Table view chart widget"""
     
-    def __init__(self, manager: DataManager):
-        super().__init__("Table", manager)
+    def __init__(self, manager: DataManager, tab_id: str = None):
+        super().__init__("Table", manager, tab_id)
         
         # Create table widget
         self.table = QTableWidget()
@@ -49,8 +49,8 @@ class TableViewWidget(ChartWidget):
 class ScatterPlotWidget(ChartWidget):
     """Scatter plot chart widget"""
     
-    def __init__(self, manager: DataManager):
-        super().__init__("Scatter", manager)
+    def __init__(self, manager: DataManager, tab_id: str = None):
+        super().__init__("Scatter", manager, tab_id)
         self.figure = Figure(figsize=(8, 6), dpi=100)
         self.canvas = FigureCanvas(self.figure)
         self.chart_layout.addWidget(self.canvas)
@@ -89,14 +89,14 @@ class ScatterPlotWidget(ChartWidget):
             
             self.figure.tight_layout()
             self.canvas.draw()
-        except Exception as e:
-            print(f"Error updating scatter plot: {e}")
+        except Exception:
+            pass  # Silently handle chart update errors
 
 class BarChartWidget(ChartWidget):
     """Bar chart widget"""
     
-    def __init__(self, manager: DataManager):
-        super().__init__("Bar Chart", manager)
+    def __init__(self, manager: DataManager, tab_id: str = None):
+        super().__init__("Bar Chart", manager, tab_id)
         self.figure = Figure(figsize=(8, 6), dpi=100)
         self.canvas = FigureCanvas(self.figure)
         self.chart_layout.addWidget(self.canvas)
@@ -132,14 +132,14 @@ class BarChartWidget(ChartWidget):
             
             self.figure.tight_layout()
             self.canvas.draw()
-        except Exception as e:
-            print(f"Error updating bar chart: {e}")
+        except Exception:
+            pass  # Silently handle chart update errors
 
 class LineChartWidget(ChartWidget):
     """Line chart widget"""
     
-    def __init__(self, manager: DataManager):
-        super().__init__("Line Chart", manager)
+    def __init__(self, manager: DataManager, tab_id: str = None):
+        super().__init__("Line Chart", manager, tab_id)
         self.figure = Figure(figsize=(8, 6), dpi=100)
         self.canvas = FigureCanvas(self.figure)
         self.chart_layout.addWidget(self.canvas)
@@ -173,14 +173,14 @@ class LineChartWidget(ChartWidget):
             
             self.figure.tight_layout()
             self.canvas.draw()
-        except Exception as e:
-            print(f"Error updating line chart: {e}")
+        except Exception:
+            pass  # Silently handle chart update errors
 
 class HistogramWidget(ChartWidget):
     """Histogram widget"""
     
-    def __init__(self, manager: DataManager):
-        super().__init__("Histogram", manager)
+    def __init__(self, manager: DataManager, tab_id: str = None):
+        super().__init__("Histogram", manager, tab_id)
         self.figure = Figure(figsize=(8, 6), dpi=100)
         self.canvas = FigureCanvas(self.figure)
         self.chart_layout.addWidget(self.canvas)
@@ -216,5 +216,5 @@ class HistogramWidget(ChartWidget):
             
             self.figure.tight_layout()
             self.canvas.draw()
-        except Exception as e:
-            print(f"Error updating histogram: {e}")
+        except Exception:
+            pass  # Silently handle chart update errors

@@ -1,0 +1,7 @@
+- Faire un tab "master data" où il n'y a que le tableau des datas -> rajouter les percentiles là dedans
+- data quality
+- S'assurer que les plots fonctionnent bien
+- Rajouter des plots
+- En ouvrant l'app, le tab doit être vide
+- Hover au-dessus d'un point dans le scatter plot -> montre le nom du joueur et les stats relevant
+- 
