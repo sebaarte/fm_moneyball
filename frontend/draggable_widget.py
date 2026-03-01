@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QSizeGrip, QFrame
+from PyQt5.QtWidgets import QSizePolicy, QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QSizeGrip, QFrame
 from PyQt5.QtCore import Qt, QPoint, pyqtSignal
 from PyQt5.QtGui import QMouseEvent, QFont
 
@@ -23,6 +23,8 @@ class DraggableWidget(QFrame):
         self._is_dragging = False
 
         self.setMinimumSize(200, 150)
+
+        self.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
 
         outer = QVBoxLayout(self)
         outer.setContentsMargins(0, 0, 0, 4)
@@ -67,14 +69,17 @@ class DraggableWidget(QFrame):
         # ── Resize grip ──────────────────────────────────────────────────
         grip_row = QHBoxLayout()
         grip_row.addStretch()
-        grip = QSizeGrip(self)
-        grip.setFixedSize(14, 14)
-        grip_row.addWidget(grip)
+        self.size_grip = QSizeGrip(self)
+        self.size_grip.setFixedSize(16, 16)
+        grip_row.addWidget(self.size_grip)
         outer.addLayout(grip_row)
 
         self.setStyleSheet(
             "DraggableWidget { background: white; border: 1px solid #aaa; }"
         )
+        
+        # Ensure widget can be resized independently
+        self.setWindowFlags(Qt.SubWindow)
 
     # ── Drag handling (title-bar only) ────────────────────────────────────
 

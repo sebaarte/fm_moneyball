@@ -181,7 +181,10 @@ class MainWindow(QMainWindow):
         new_tab_btn.clicked.connect(self.create_new_tab)
         self.tab_widget.setCornerWidget(new_tab_btn, Qt.TopRightCorner)
         
-        # Create first tab
+        # Create Master Data tab first (non-closable)
+        self._create_master_data_tab()
+        
+        # Create first user tab
         self.create_new_tab("Tab 1")
         
         splitter.addWidget(self.tab_widget)
@@ -251,13 +254,29 @@ class MainWindow(QMainWindow):
         
         self._auto_save()
     
+    def _create_master_data_tab(self):
+        """Create the non-closable Master Data tab"""
+        canvas = TabCanvas(self.data_manager.MASTER_TAB_ID, self.data_manager)
+        self.tab_canvases[self.data_manager.MASTER_TAB_ID] = canvas
+        self.tab_widget.addTab(canvas, self.data_manager.MASTER_TAB_ID)
+        
+        # Add a table view automatically to the Master Data tab
+        if self.data_manager.original_df is not None:
+            table_chart = TableViewWidget(self.data_manager, self.data_manager.MASTER_TAB_ID)
+            canvas.add_chart(table_chart)
+    
     def close_tab(self, index: int):
         """Close a tab"""
-        if self.tab_widget.count() <= 1:
-            QMessageBox.warning(self, "Cannot Close", "Cannot close the last tab.")
+        tab_name = self.tab_widget.tabText(index)
+        
+        # Cannot close Master Data tab
+        if tab_name == self.data_manager.MASTER_TAB_ID:
+            QMessageBox.warning(self, "Cannot Close", "Cannot close the Master Data tab.")
             return
         
-        tab_name = self.tab_widget.tabText(index)
+        if self.tab_widget.count() <= 2:  # Master Data + at least 1 other
+            QMessageBox.warning(self, "Cannot Close", "Cannot close the last user tab.")
+            return
         
         reply = QMessageBox.question(
             self, "Close Tab", 
@@ -299,6 +318,9 @@ class MainWindow(QMainWindow):
             # Load into manager
             self.data_manager.load_data(df, csv_path)
             
+            # Add table to Master Data tab
+            self._populate_master_data_tab()
+            
             self.status_bar.showMessage(f"Loaded {len(df)} rows from {file_path} (saved to {csv_path})")
             self._auto_save()
         except Exception as e:
@@ -316,10 +338,24 @@ class MainWindow(QMainWindow):
         try:
             df = pd.read_csv(file_path)
             self.data_manager.load_data(df, file_path)
+            
+            # Add table to Master Data tab
+            self._populate_master_data_tab()
+            
             self.status_bar.showMessage(f"Loaded {len(df)} rows from {file_path}")
             self._auto_save()
         except Exception as e:
             QMessageBox.critical(self, "Error", f"Failed to load CSV: {str(e)}")
+    
+    def _populate_master_data_tab(self):
+        """Add or update the table in Master Data tab"""
+        master_canvas = self.tab_canvases.get(self.data_manager.MASTER_TAB_ID)
+        if master_canvas:
+            # Clear existing charts
+            master_canvas.clear_all()
+            # Add table view
+            table_chart = TableViewWidget(self.data_manager, self.data_manager.MASTER_TAB_ID)
+            master_canvas.add_chart(table_chart)
     
     def add_table_chart(self):
         """Add a table view chart"""

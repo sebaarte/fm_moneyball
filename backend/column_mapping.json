@@ -1,0 +1,255 @@
+{
+  "general": {
+    "Name": {"csv": "Name", "source": "input"},
+    "Position": {"csv": "Position", "source": "input"},
+    "Age": {"csv": "Age", "source": "input"},
+    "Club": {"csv": "Club", "source": "input"},
+    "Division": {"csv": "Division", "source": "input"},
+    "Nationality": {"csv": "Nat", "source": "input"},
+    "Home-Grown Status": {"csv": "Home-Grown Status", "source": "input"},
+    "Personality": {"csv": "Personality", "source": "input"},
+    "Media handling": {"csv": "Media Handling", "source": "input"},
+    "Wage": {"csv": "Wage", "source": "input"},
+    "Transfer Value": {"csv": "Transfer Value", "source": "input"},
+    "Asking Price": {"csv": "Asking Price", "source": "input"},
+    "Preferred Foot": {"csv": "Preferred Foot", "source": "input"},
+    "Starts": {"csv": "Starts", "source": "input"},
+    "Sub Appearances": {"csv": "Apps", "source": "input"},
+    "Minutes Played": {"csv": "Mins", "source": "input"},
+    "Minutes/game": {"csv": null, "source": "computed", "formula": "Minutes Played / (Starts + Sub Appearances)"},
+    "Average Rating": {"csv": "Av Rat", "source": "input"}
+  },
+  "goals": {
+    "Goals": {"csv": "Gls", "source": "input"},
+    "Goals/90": {"csv": "Gls/90", "source": "input"},
+    "Minutes/Goal": {"csv": "Mins/Gl", "source": "input"},
+    "xG": {"csv": "xG", "source": "input"},
+    "xG/90": {"csv": "xG/90", "source": "input"},
+    "xG/Shot": {"csv": null, "source": "computed", "formula": "xG / Shots"},
+    "xG Overperformance": {"csv": "xG-OP", "source": "input"},
+    "xG Overperformance/90": {"csv": null, "source": "computed", "formula": "xG Overperformance / (Minutes Played / 90)"},
+    "Non-Penalty Goals": {"csv": null, "source": "computed", "formula": "Goals - Penalties Scored"},
+    "Non-Penalty Goals/90": {"csv": null, "source": "computed"},
+    "Non-pen Goals/Shot": {"csv": null, "source": "computed"},
+    "Minutes/Non-pen Goal": {"csv": null, "source": "computed"},
+    "Non-pen xG": {"csv": null, "source": "computed"},
+    "Non-pen xG/90": {"csv": null, "source": "computed"},
+    "Non-Penalty Goals - Non-pen xG/90": {"csv": null, "source": "computed"},
+    "Non-Penalty xD/Shot": {"csv": null, "source": "computed"},
+    "Non-Pen xG Overperformance": {"csv": null, "source": "computed"},
+    "Non-Pen xG Overperformance/90": {"csv": null, "source": "computed"},
+    "Conversion %": {"csv": "Conv %", "source": "input"},
+    "Goals Inside Box": {"csv": null, "source": "computed"},
+    "Goals Inside Box/90": {"csv": null, "source": "computed"},
+    "Goals Inside Box %": {"csv": null, "source": "computed"},
+    "Inside Box Conversion %": {"csv": null, "source": "computed"},
+    "Goals Outside Box": {"csv": "Goals Outside Box", "source": "input"},
+    "Goals Outside Box/90": {"csv": null, "source": "computed"},
+    "Goals Outside Box %": {"csv": null, "source": "computed"},
+    "Outside Box Conversion %": {"csv": null, "source": "computed"}
+  },
+  "assists": {
+    "Assists": {"csv": "Ast", "source": "input"},
+    "Assists/90": {"csv": "Asts/90", "source": "input"},
+    "Minutes/Assist": {"csv": null, "source": "computed"},
+    "xA": {"csv": "xA", "source": "input"},
+    "xA/90": {"csv": "xA/90", "source": "input"},
+    "xA Overperformance": {"csv": null, "source": "computed", "formula": "Assists - xA"},
+    "xA Overperformance/90": {"csv": null, "source": "computed"},
+    "Assists/Clear Cut Chances Created": {"csv": null, "source": "computed"}
+  },
+  "goal_contributions": {
+    "Goal Contributions": {"csv": null, "source": "computed", "formula": "Goals + Assists"},
+    "Goal Contributions/90": {"csv": null, "source": "computed"},
+    "xGC": {"csv": null, "source": "computed", "formula": "xG + xA"},
+    "xGC/90": {"csv": null, "source": "computed"},
+    "xGC Overperformance": {"csv": null, "source": "computed"},
+    "xGC Overperformance/90": {"csv": null, "source": "computed"},
+    "Non-penalty GC": {"csv": null, "source": "computed"},
+    "Non-penalty GC/90": {"csv": null, "source": "computed"},
+    "Non-penalty xGC": {"csv": null, "source": "computed"},
+    "Non-penalty xGC/90": {"csv": null, "source": "computed"},
+    "Non-penalty xGC Overperformance": {"csv": null, "source": "computed"},
+    "Non-penalty xGC Overperformance/90": {"csv": null, "source": "computed"}
+  },
+  "shots": {
+    "Shots": {"csv": "Shots", "source": "input"},
+    "Shots/90": {"csv": "Shot/90", "source": "input"},
+    "Shots on target": {"csv": "ShT", "source": "input"},
+    "Shots on target/90": {"csv": "ShT/90", "source": "input"},
+    "Shot Accuracy %": {"csv": "Shot %", "source": "input"},
+    "Shots Inside Box": {"csv": null, "source": "computed"},
+    "Shots Inside Box/90": {"csv": null, "source": "computed"},
+    "Shots Inside Box %": {"csv": null, "source": "computed"},
+    "Shots Outside Box": {"csv": null, "source": "computed"},
+    "Shots Outside Box/90": {"csv": "Shots Outside Box/90", "source": "input"},
+    "Shots Outside Box %": {"csv": null, "source": "computed"}
+  },
+  "passes": {
+    "Passes Attempted": {"csv": "Pas A", "source": "input"},
+    "Passes Attempted/90": {"csv": "Ps A/90", "source": "input"},
+    "Passes Completed": {"csv": "Ps C", "source": "input"},
+    "Passes Completed/90": {"csv": "Ps C/90", "source": "input"},
+    "Pass Completion %": {"csv": "Pas %", "source": "input"},
+    "Progressive Passes": {"csv": "Pr Passes", "source": "input"},
+    "Progressive Passes/90": {"csv": "Pr passes/90", "source": "input"},
+    "Progressive Pass Rate": {"csv": null, "source": "computed"},
+    "Key Passes": {"csv": "K Pas", "source": "input"},
+    "Key Passes/90": {"csv": "K Ps/90", "source": "input"},
+    "Key Pass %": {"csv": null, "source": "computed"},
+    "Open Play Key Passes": {"csv": "OP-KP", "source": "input"},
+    "Open Play Key Passes/90": {"csv": "OP-KP/90", "source": "input"},
+    "Open Play Key Pass %": {"csv": null, "source": "computed"}
+  },
+  "crossing": {
+    "Crosses Attempted": {"csv": "Cr A", "source": "input"},
+    "Crosses Attempted/90": {"csv": "Crs A/90", "source": "input"},
+    "Crosses Completed": {"csv": "Cr C", "source": "input"},
+    "Crosses Completed/90": {"csv": "Cr C/90", "source": "input"},
+    "Cross Completion %": {"csv": "Cr C/A", "source": "input"},
+    "Open Play Crosses Attempted": {"csv": "OP-Crs A", "source": "input"},
+    "Open Play Crosses Attempted/90": {"csv": "OP-Crs A/90", "source": "input"},
+    "Open Play Crosses Completed": {"csv": "OP-Crs C", "source": "input"},
+    "Open Play Crosses Completed/90": {"csv": "OP-Crs C/90", "source": "input"},
+    "Open Play Cross Completion %": {"csv": "OP-Cr %", "source": "input"}
+  },
+  "chances_created": {
+    "Chances Created": {"csv": "Ch C/90", "source": "input"},
+    "Chances Created/90": {"csv": "Ch C/90", "source": "input"},
+    "Clear Cut Chances Created": {"csv": "CCC", "source": "input"},
+    "Clear Cut Chances Created/90": {"csv": null, "source": "computed"},
+    "Clear Cut Chances %": {"csv": null, "source": "computed"}
+  },
+  "pressing": {
+    "Pressures Attempted": {"csv": "Pres A", "source": "input"},
+    "Pressures Attempted/90": {"csv": "Pres A/90", "source": "input"},
+    "Pressures Completed": {"csv": "Pres C", "source": "input"},
+    "Pressures Completed/90": {"csv": "Pres C/90", "source": "input"},
+    "Press Completion %": {"csv": null, "source": "computed", "formula": "Pressures Completed / Pressures Attempted * 100"}
+  },
+  "possession": {
+    "Possession Won": {"csv": "Poss Won/90", "source": "input"},
+    "Possession Won/90": {"csv": "Poss Won/90", "source": "input"},
+    "Possession Lost": {"csv": "Poss Lost/90", "source": "input"},
+    "Possession Lost/90": {"csv": "Poss Lost/90", "source": "input"},
+    "Possession differential / 90": {"csv": null, "source": "computed", "formula": "Possession Won/90 - Possession Lost/90"}
+  },
+  "dribbles": {
+    "Dribbles / 90": {"csv": "Drb/90", "source": "input"},
+    "Dribbles Completed": {"csv": "Drb", "source": "input"}
+  },
+  "penalties": {
+    "Penalties Taken": {"csv": "Pen/R", "source": "input"},
+    "Penalties Scored": {"csv": "Pens S", "source": "input"},
+    "Penalty Conversion %": {"csv": null, "source": "computed", "formula": "Penalties Scored / Penalties Taken * 100"}
+  },
+  "tackles": {
+    "Tackles Attempted": {"csv": "Tck A", "source": "input"},
+    "Tackles Attempted/90": {"csv": "Tck A/90", "source": "input"},
+    "Tackles Completed": {"csv": "Tck W", "source": "input"},
+    "Tackles Completed/90": {"csv": "Tck/90", "source": "input"},
+    "Tackle Completion %": {"csv": "Tck R", "source": "input"},
+    "Tackles Failed": {"csv": null, "source": "computed", "formula": "Tackles Attempted - Tackles Completed"},
+    "Tackles Failed/90": {"csv": null, "source": "computed"},
+    "Key Tackles": {"csv": "K Tck", "source": "input"},
+    "Key Tackles/90": {"csv": "K Tck/90", "source": "input"},
+    "Key Tackle %": {"csv": null, "source": "computed"},
+    "Tackle Quality": {"csv": null, "source": "computed"}
+  },
+  "interceptions": {
+    "Intereceptions": {"csv": "Itc", "source": "input"},
+    "Interceptions/90": {"csv": "Int/90", "source": "input"}
+  },
+  "blocks": {
+    "Blocks": {"csv": "Blk", "source": "input"},
+    "Blocks/90": {"csv": "Blk/90", "source": "input"},
+    "Shots Blocked": {"csv": "Shts Blckd", "source": "input"},
+    "Shots Blocked/90": {"csv": "Shts Blckd/90", "source": "input"}
+  },
+  "headers": {
+    "Headers Attempted": {"csv": "Hdrs A", "source": "input"},
+    "Headers Attempted/90": {"csv": "Hdrs A/90", "source": "input"},
+    "Headers Won": {"csv": "Hdrs", "source": "input"},
+    "Headers Won/90": {"csv": "Hdrs W/90", "source": "input"},
+    "Header Won %": {"csv": "Hdr %", "source": "input"},
+    "Headers Lost": {"csv": null, "source": "computed"},
+    "Headers Lost/90": {"csv": "Hdrs L/90", "source": "input"},
+    "Header Lost %": {"csv": null, "source": "computed"},
+    "Key Headers": {"csv": "K Hdrs", "source": "input"},
+    "Key Headers/90": {"csv": "K Hdrs/90", "source": "input"},
+    "Key Header %": {"csv": null, "source": "computed"},
+    "Aerial Duels Attempted": {"csv": "Aer A/90", "source": "input"},
+    "Aerial Duels Attempted/90": {"csv": "Aer A/90", "source": "input"},
+    "Aerial Duels Won": {"csv": null, "source": "computed"},
+    "Aerial Duels Win %": {"csv": null, "source": "computed"}
+  },
+  "fouls": {
+    "Fouls Against": {"csv": "FA", "source": "input"},
+    "Fouls Made": {"csv": "Fls", "source": "input"},
+    "Net Fouls": {"csv": null, "source": "computed", "formula": "Fouls Against - Fouls Made"},
+    "Fouls Won / 90": {"csv": null, "source": "computed"},
+    "Fouls Committed / 90": {"csv": null, "source": "computed"}
+  },
+  "clearances": {
+    "Clearances": {"csv": "Clear", "source": "input"},
+    "Clearances/90": {"csv": "Clr/90", "source": "input"}
+  },
+  "offsides": {
+    "Offsides": {"csv": "Off", "source": "input"},
+    "Offsides/90": {"csv": null, "source": "computed"},
+    "Offsides per Non-Penalty Goal": {"csv": null, "source": "computed"}
+  },
+  "distance": {
+    "Distance Covered": {"csv": "Distance", "source": "input"},
+    "Distance Covered/90": {"csv": "Dist/90", "source": "input"}
+  },
+  "saves": {
+    "Total Saves": {"csv": "Svt", "source": "input"},
+    "Saves/90": {"csv": null, "source": "computed"},
+    "Save %": {"csv": "Sv %", "source": "input"},
+    "xSave": {"csv": null, "source": "computed"},
+    "xSave %": {"csv": "xSv %", "source": "input"},
+    "xSave % Overperformance": {"csv": null, "source": "computed"},
+    "Saves Held": {"csv": "Svh", "source": "input"},
+    "Saves Held/90": {"csv": null, "source": "computed"},
+    "Saves Held %": {"csv": null, "source": "computed"},
+    "Saves Held/Shots Faced": {"csv": null, "source": "computed"},
+    "Saves Tipped": {"csv": null, "source": "computed"},
+    "Saves Tipped/90": {"csv": null, "source": "computed"},
+    "Saves Tipped %": {"csv": null, "source": "computed"},
+    "Saves Tipped / Shots Faced": {"csv": null, "source": "computed"},
+    "Saves Parried": {"csv": "Svp", "source": "input"},
+    "Saves Parried/90": {"csv": null, "source": "computed"},
+    "Saves Parried %": {"csv": null, "source": "computed"},
+    "Saves Parried / Shots Faced": {"csv": null, "source": "computed"},
+    "Saves/Goal Conceded": {"csv": null, "source": "computed"},
+    "Save Efficiency": {"csv": null, "source": "computed"},
+    "Shots on target Against": {"csv": null, "source": "computed"},
+    "Shots on target Against/90": {"csv": null, "source": "computed"},
+    "xGP (expected Goals prevented)": {"csv": "xGP", "source": "input"},
+    "xGP/90": {"csv": "xGP/90", "source": "input"},
+    "Penalites Faced": {"csv": "Pens Faced", "source": "input"},
+    "Penalties Saved": {"csv": "Pens Saved", "source": "input"},
+    "Penalty Save %": {"csv": "Pens Saved Ratio", "source": "input"}
+  },
+  "conceded": {
+    "Goals Conceded": {"csv": "Conc", "source": "input"},
+    "Goals Conceded/90": {"csv": "Con/90", "source": "input"},
+    "Clean Sheets": {"csv": "Clean Sheets", "source": "input"},
+    "Clean Sheet Ratio": {"csv": null, "source": "computed", "formula": "Clean Sheets / Starts"}
+  },
+  "cards": {
+    "Yellow Cards": {"csv": "Yel", "source": "input"},
+    "Yellow Cards/90": {"csv": null, "source": "computed"},
+    "Red Cards": {"csv": "Red", "source": "input"},
+    "Red Cards/90": {"csv": null, "source": "computed"},
+    "Yellows/Tackle": {"csv": null, "source": "computed"},
+    "Reds/Tackle": {"csv": null, "source": "computed"}
+  },
+  "misc": {
+    "Player Of the match Awards": {"csv": "PoM", "source": "input"},
+    "Mistakes Leading to Goal": {"csv": "Gl Mst", "source": "input"},
+    "Sprints": {"csv": null, "source": "computed"},
+    "Sprints/90": {"csv": "Sprints/90", "source": "input"}
+  }
+}
